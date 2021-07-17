@@ -1,0 +1,98 @@
+openapi: 3.0.1
+info:
+  title: "Headless Vitamins"
+  description: "API for accessing Vitamin detail"
+  version: V1.0.0
+components:
+  schemas:
+    vitamin:
+      description: Contains all of the data for a single vitamin or mineral.
+      properties:
+        name:
+          description: The vitamin or minerl name.
+          type: string
+        id:
+          description: the vitamin or minerl internal ID
+          type: string
+        chemicalName:
+          description: the chemical name of the vitamin or mineral if it has some.
+          items:
+            type: string
+          type: array
+        properties:
+          description: the chemical properties of the vitamin or mineral if it has some.
+          items:
+            type: string
+          type: array
+        group:
+          description: the froup of the vitamin or mineral bkongs to. i.e the B group or A group
+          type: string
+        description:
+          description: the description of vitamin or mineral.
+          type: string
+        artcleId:
+          description: A journal articleId if there is a web content article for the viyamin.
+          type: string
+        type:
+          description: the type of vitamin or mineral.
+          enum: [ Vitamin, Mineral, Other ]
+          type: string
+        attributes:
+          description: health properties attributed to the vitamin or mineral.
+          type: array
+          items:
+            type: string
+        risks:
+          description: Risks associated with the vitamin or mineral.
+          items:
+            type: string
+          type: array
+        symptoms:
+          description: Symptoms associated with the vitamin or mineral.
+          items:
+            type: string
+          type: array
+        creator:
+          $ref: "#/components/schemas/Creator"
+      type: object
+    Creator:
+      description: Represent the user account of the content's creator/author. Properties follow the [creator](https://schema.org/creator) specification
+      properties:
+        additionalName:
+          description: The author's additional name (e.g., middle name).
+          readOnly: true
+          type: string
+        familyName:
+          description: The author's surname.
+          readOnly: true
+          type: string
+        givenName:
+          description: the author's first name.
+          type: string
+          readOnly: true
+        id:
+          description: the author's id.
+          format: int64
+          readOnly: true
+          type: string
+        image:
+          description: a relative URL to the author's profile image.
+          format: url
+          readOnly: true
+          type: string
+        name:
+          description: the author's full name.
+          type: string
+          readOnly: true
+        peofileURL:
+          description: a relatove URL to the author's user profile.
+          readOnly: true
+          type: string
+      type: object
+
+
+
+
+
+
+paths:
