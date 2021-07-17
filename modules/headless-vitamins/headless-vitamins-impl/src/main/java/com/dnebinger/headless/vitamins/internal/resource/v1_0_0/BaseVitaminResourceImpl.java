@@ -73,7 +73,7 @@ public abstract class BaseVitaminResourceImpl
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'GET' 'http://localhost:8080/o/headless-vitamins/V1.0.0/viatmins'  -u 'test@liferay.com:test'
+	 * curl -X 'GET' 'http://localhost:8080/o/headless-vitamins/V1.0.0/vitamins'  -u 'test@liferay.com:test'
 	 */
 	@GET
 	@Operation(
@@ -89,7 +89,7 @@ public abstract class BaseVitaminResourceImpl
 			@Parameter(in = ParameterIn.QUERY, name = "sort")
 		}
 	)
-	@Path("/viatmins")
+	@Path("/vitamins")
 	@Produces({"application/json", "application/xml"})
 	@Tags(value = {@Tag(name = "Vitamin")})
 	public Page<Vitamin> getViatminsPage(
@@ -104,12 +104,12 @@ public abstract class BaseVitaminResourceImpl
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'POST' 'http://localhost:8080/o/headless-vitamins/V1.0.0/viatmins' -d $'{"artcleId": ___, "attributes": ___, "chemicalName": ___, "creator": ___, "description": ___, "group": ___, "id": ___, "name": ___, "properties": ___, "risks": ___, "symptoms": ___, "type": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
+	 * curl -X 'POST' 'http://localhost:8080/o/headless-vitamins/V1.0.0/vitamins' -d $'{"artcleId": ___, "attributes": ___, "chemicalName": ___, "creator": ___, "description": ___, "group": ___, "id": ___, "name": ___, "properties": ___, "risks": ___, "symptoms": ___, "type": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
 	 */
 	@Consumes({"application/json", "application/xml"})
 	@Operation(description = "Create a new vitamin/mineral")
 	@Override
-	@Path("/viatmins")
+	@Path("/vitamins")
 	@POST
 	@Produces({"application/json", "application/xml"})
 	@Tags(value = {@Tag(name = "Vitamin")})

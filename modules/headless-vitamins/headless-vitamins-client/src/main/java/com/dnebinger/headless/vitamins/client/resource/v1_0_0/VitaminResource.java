@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 /**
  * @author Dave Nebinger
@@ -242,7 +242,7 @@ public interface VitaminResource {
 
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
-					_builder._port + "/o/headless-vitamins/V1.0.0/viatmins");
+					_builder._port + "/o/headless-vitamins/V1.0.0/vitamins");
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -319,7 +319,7 @@ public interface VitaminResource {
 
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
-					_builder._port + "/o/headless-vitamins/V1.0.0/viatmins");
+					_builder._port + "/o/headless-vitamins/V1.0.0/vitamins");
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);

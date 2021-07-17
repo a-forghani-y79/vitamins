@@ -1,7 +1,7 @@
 package com.dnebinger.headless.vitamins.internal.jaxrs.application;
 
+import javax.annotation.Generated;
 
-import javax.annotation.processing.Generated;
 import javax.ws.rs.core.Application;
 
 import org.osgi.service.component.annotations.Component;

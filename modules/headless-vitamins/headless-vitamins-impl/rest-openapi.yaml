@@ -94,7 +94,7 @@ components:
           type: string
       type: object
 paths:
-  "/viatmins":
+  "/vitamins":
     get:
       operationId: getViatminsPage
       tags: [ "Vitamin" ]

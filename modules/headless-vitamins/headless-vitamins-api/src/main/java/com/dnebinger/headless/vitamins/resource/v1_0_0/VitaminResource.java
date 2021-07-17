@@ -12,7 +12,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.Locale;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

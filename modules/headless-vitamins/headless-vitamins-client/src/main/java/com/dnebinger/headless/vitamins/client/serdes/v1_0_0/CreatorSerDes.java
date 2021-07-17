@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 /**
  * @author Dave Nebinger
