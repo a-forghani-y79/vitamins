@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 /**
  * @author Dave Nebinger

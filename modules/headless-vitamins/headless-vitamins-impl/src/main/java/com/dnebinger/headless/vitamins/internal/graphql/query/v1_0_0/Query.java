@@ -18,8 +18,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-import javax.annotation.Generated;
 
+import javax.annotation.processing.Generated;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

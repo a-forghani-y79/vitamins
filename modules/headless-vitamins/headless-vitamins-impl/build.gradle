@@ -1,5 +1,7 @@
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+	compileOnly project(":modules:headless-vitamins:headless-vitamins-api")
+	compileOnly project(":modules:headless-vitamins:headless-vitamins-client")
 }
 
 buildscript {

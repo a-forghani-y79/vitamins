@@ -2,9 +2,9 @@ package com.dnebinger.headless.vitamins.client.permission;
 
 import com.dnebinger.headless.vitamins.client.json.BaseJSONParser;
 
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
-import javax.annotation.Generated;
 
 /**
  * @author Dave Nebinger

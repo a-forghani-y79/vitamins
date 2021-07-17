@@ -1,4 +1,4 @@
 Bundle-Name: headless-vitamins-client
 Bundle-SymbolicName: com.dnebinger.headless.vitamins
 Bundle-Version: 1.0.0
-Export-Package: com.dnebinger.headless.vitamins.api
+Export-Package: com.dnebinger.headless.vitamins.client.dto.v1_0_0 \ com.dnebinger.headless.vitamins.client.resource.v1_0_0
