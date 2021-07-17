@@ -10,6 +10,9 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Dave Nebinger
  */
@@ -20,6 +23,10 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class VitaminResourceImpl extends BaseVitaminResourceImpl {
 	@Override
 	public Page<Vitamin> getViatminsPage(String search, Filter filter, Pagination pagination, Sort[] sorts) throws Exception {
-		return super.getViatminsPage(search, filter, pagination, sorts);
+		List<Vitamin> vitamins = new ArrayList<>();
+		long totalCountVitamins = 10;
+
+
+		return Page.of(vitamins,Pagination.of(pagination.getPage(),pagination.getPageSize()),totalCountVitamins);
 	}
 }
