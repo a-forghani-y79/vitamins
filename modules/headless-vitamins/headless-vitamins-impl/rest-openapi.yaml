@@ -1,11 +1,14 @@
 openapi: 3.0.1
 info:
-  title: "Headless Vitamins"
   description: "API for accessing Vitamin detail"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+  title: "Headless Vitamins"
   version: V1.0.0
 components:
   schemas:
-    vitamin:
+    Vitamin:
       description: Contains all of the data for a single vitamin or mineral.
       properties:
         name:
@@ -74,10 +77,10 @@ components:
           description: the author's id.
           format: int64
           readOnly: true
-          type: string
+          type: integer
         image:
           description: a relative URL to the author's profile image.
-          format: url
+          format: uri
           readOnly: true
           type: string
         name:
@@ -86,13 +89,164 @@ components:
           readOnly: true
         peofileURL:
           description: a relatove URL to the author's user profile.
+          format: uri
           readOnly: true
           type: string
       type: object
-
-
-
-
-
-
 paths:
+  "/viatmins":
+    get:
+      operationId: getViatminsPage
+      tags: [ "Vitamin" ]
+      description: Retrieves the list of vitamins and minerals. Results can be paginated, searched, and sorted.
+      parameters:
+        - in: query
+          name: filter
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+        - in: query
+          name: search
+          schema:
+            type: string
+        - in: query
+          name: sort
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Vitamin"
+                type: array
+            application/xml:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Vitamin"
+                type: array
+    post:
+      operationId: postViatmin
+      tags: ["Vitamin"]
+      description: Create a new vitamin/mineral
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Vitamin"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Vitamin"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+  "/vitamin/{vitaminId}":
+    get:
+      operationId: getVitamin
+      tags: ["Vitamin"]
+      description: Retrieves the vitamin/mineral via its ID.
+      parameters:
+        - name: vitaminId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+    put:
+      description: "Replace the vitamin/mineral with the information sent in the request body. Any missing fields are deleted, unless they are required."
+      operationId: putVitamin
+      tags: ["Vitamin"]
+      parameters:
+        - name: vitaminId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Vitamin"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Vitamin"
+      responses:
+        200:
+          description: Default Response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+    patch:
+      operationId: patchVitamin
+      tags: [ "Vitamin" ]
+      description: Replaces the vitamin/mineral with the information sent in the request body. Any missing fields are deleted, unless they are required.
+      parameters:
+          - name: vitaminId
+            in: path
+            required: true
+            schema:
+              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Vitamin"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Vitamin"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Vitamin"
+    delete:
+      operationId: deleteVitamin
+      tags: [ "Vitamin" ]
+      description: Delete the vitamin/mineral and returns a 204 if operation succeeds.
+      parameters:
+        - name: vitaminId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: ""
+          content:
+            application/json: {}
+            application/xml: {}
+
