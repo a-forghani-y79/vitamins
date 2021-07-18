@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.denbinger.vitamins.service.persistence;
+package com.dnebinger.vitamins.service.persistence;
 
-import com.denbinger.vitamins.exception.NoSuchVitaminDetailException;
-import com.denbinger.vitamins.model.VitaminDetail;
+import com.dnebinger.vitamins.exception.NoSuchVitaminDetailException;
+import com.dnebinger.vitamins.model.VitaminDetail;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
@@ -541,7 +541,7 @@ public interface VitaminDetailPersistence
 	 * @param type the type
 	 * @return the matching vitamin details
 	 */
-	public java.util.List<VitaminDetail> findBypersistedVitaminIdType(
+	public java.util.List<VitaminDetail> findByPersistedVitaminIdType(
 		long persistedVitaminId, int type);
 
 	/**
@@ -557,7 +557,7 @@ public interface VitaminDetailPersistence
 	 * @param end the upper bound of the range of vitamin details (not inclusive)
 	 * @return the range of matching vitamin details
 	 */
-	public java.util.List<VitaminDetail> findBypersistedVitaminIdType(
+	public java.util.List<VitaminDetail> findByPersistedVitaminIdType(
 		long persistedVitaminId, int type, int start, int end);
 
 	/**
@@ -574,7 +574,7 @@ public interface VitaminDetailPersistence
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching vitamin details
 	 */
-	public java.util.List<VitaminDetail> findBypersistedVitaminIdType(
+	public java.util.List<VitaminDetail> findByPersistedVitaminIdType(
 		long persistedVitaminId, int type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<VitaminDetail>
 			orderByComparator);
@@ -594,7 +594,7 @@ public interface VitaminDetailPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching vitamin details
 	 */
-	public java.util.List<VitaminDetail> findBypersistedVitaminIdType(
+	public java.util.List<VitaminDetail> findByPersistedVitaminIdType(
 		long persistedVitaminId, int type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<VitaminDetail>
 			orderByComparator,
@@ -609,7 +609,7 @@ public interface VitaminDetailPersistence
 	 * @return the first matching vitamin detail
 	 * @throws NoSuchVitaminDetailException if a matching vitamin detail could not be found
 	 */
-	public VitaminDetail findBypersistedVitaminIdType_First(
+	public VitaminDetail findByPersistedVitaminIdType_First(
 			long persistedVitaminId, int type,
 			com.liferay.portal.kernel.util.OrderByComparator<VitaminDetail>
 				orderByComparator)
@@ -623,7 +623,7 @@ public interface VitaminDetailPersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching vitamin detail, or <code>null</code> if a matching vitamin detail could not be found
 	 */
-	public VitaminDetail fetchBypersistedVitaminIdType_First(
+	public VitaminDetail fetchByPersistedVitaminIdType_First(
 		long persistedVitaminId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<VitaminDetail>
 			orderByComparator);
@@ -637,7 +637,7 @@ public interface VitaminDetailPersistence
 	 * @return the last matching vitamin detail
 	 * @throws NoSuchVitaminDetailException if a matching vitamin detail could not be found
 	 */
-	public VitaminDetail findBypersistedVitaminIdType_Last(
+	public VitaminDetail findByPersistedVitaminIdType_Last(
 			long persistedVitaminId, int type,
 			com.liferay.portal.kernel.util.OrderByComparator<VitaminDetail>
 				orderByComparator)
@@ -651,7 +651,7 @@ public interface VitaminDetailPersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching vitamin detail, or <code>null</code> if a matching vitamin detail could not be found
 	 */
-	public VitaminDetail fetchBypersistedVitaminIdType_Last(
+	public VitaminDetail fetchByPersistedVitaminIdType_Last(
 		long persistedVitaminId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<VitaminDetail>
 			orderByComparator);
@@ -666,7 +666,7 @@ public interface VitaminDetailPersistence
 	 * @return the previous, current, and next vitamin detail
 	 * @throws NoSuchVitaminDetailException if a vitamin detail with the primary key could not be found
 	 */
-	public VitaminDetail[] findBypersistedVitaminIdType_PrevAndNext(
+	public VitaminDetail[] findByPersistedVitaminIdType_PrevAndNext(
 			long vitaminDetailId, long persistedVitaminId, int type,
 			com.liferay.portal.kernel.util.OrderByComparator<VitaminDetail>
 				orderByComparator)
@@ -678,7 +678,7 @@ public interface VitaminDetailPersistence
 	 * @param persistedVitaminId the persisted vitamin ID
 	 * @param type the type
 	 */
-	public void removeBypersistedVitaminIdType(
+	public void removeByPersistedVitaminIdType(
 		long persistedVitaminId, int type);
 
 	/**
@@ -688,7 +688,7 @@ public interface VitaminDetailPersistence
 	 * @param type the type
 	 * @return the number of matching vitamin details
 	 */
-	public int countBypersistedVitaminIdType(long persistedVitaminId, int type);
+	public int countByPersistedVitaminIdType(long persistedVitaminId, int type);
 
 	/**
 	 * Caches the vitamin detail in the entity cache if it is enabled.

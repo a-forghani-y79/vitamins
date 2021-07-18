@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.denbinger.vitamins.model;
+package com.dnebinger.vitamins.model;
 
 import java.io.Serializable;
 
@@ -21,13 +21,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.denbinger.vitamins.service.http.VitaminDetailServiceSoap}.
+ * This class is used by SOAP remote services, specifically {@link com.dnebinger.vitamins.service.http.VitaminDetailServiceSoap}.
  *
  * @author Brian Wing Shun Chan
- * @deprecated As of Athanasius (7.3.x), with no direct replacement
  * @generated
  */
-@Deprecated
 public class VitaminDetailSoap implements Serializable {
 
 	public static VitaminDetailSoap toSoapModel(VitaminDetail model) {
@@ -35,13 +33,13 @@ public class VitaminDetailSoap implements Serializable {
 
 		soapModel.setUuid(model.getUuid());
 		soapModel.setVitaminDetailId(model.getVitaminDetailId());
-		soapModel.setPersistedVitaminId(model.getPersistedVitaminId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setPersistedVitaminId(model.getPersistedVitaminId());
 		soapModel.setType(model.getType());
 		soapModel.setValue(model.getValue());
 
@@ -113,14 +111,6 @@ public class VitaminDetailSoap implements Serializable {
 		_vitaminDetailId = vitaminDetailId;
 	}
 
-	public long getPersistedVitaminId() {
-		return _persistedVitaminId;
-	}
-
-	public void setPersistedVitaminId(long persistedVitaminId) {
-		_persistedVitaminId = persistedVitaminId;
-	}
-
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -169,6 +159,14 @@ public class VitaminDetailSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public long getPersistedVitaminId() {
+		return _persistedVitaminId;
+	}
+
+	public void setPersistedVitaminId(long persistedVitaminId) {
+		_persistedVitaminId = persistedVitaminId;
+	}
+
 	public int getType() {
 		return _type;
 	}
@@ -187,13 +185,13 @@ public class VitaminDetailSoap implements Serializable {
 
 	private String _uuid;
 	private long _vitaminDetailId;
-	private long _persistedVitaminId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _persistedVitaminId;
 	private int _type;
 	private String _value;
 

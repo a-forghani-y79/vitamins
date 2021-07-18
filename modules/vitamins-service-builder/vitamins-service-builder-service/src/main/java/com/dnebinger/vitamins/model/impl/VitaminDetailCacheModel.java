@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.denbinger.vitamins.model.impl;
+package com.dnebinger.vitamins.model.impl;
 
-import com.denbinger.vitamins.model.VitaminDetail;
+import com.dnebinger.vitamins.model.VitaminDetail;
 
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.StringBundler;
@@ -69,8 +69,6 @@ public class VitaminDetailCacheModel
 		sb.append(uuid);
 		sb.append(", vitaminDetailId=");
 		sb.append(vitaminDetailId);
-		sb.append(", persistedVitaminId=");
-		sb.append(persistedVitaminId);
 		sb.append(", groupId=");
 		sb.append(groupId);
 		sb.append(", companyId=");
@@ -83,6 +81,8 @@ public class VitaminDetailCacheModel
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
+		sb.append(", persistedVitaminId=");
+		sb.append(persistedVitaminId);
 		sb.append(", type=");
 		sb.append(type);
 		sb.append(", value=");
@@ -104,7 +104,6 @@ public class VitaminDetailCacheModel
 		}
 
 		vitaminDetailImpl.setVitaminDetailId(vitaminDetailId);
-		vitaminDetailImpl.setPersistedVitaminId(persistedVitaminId);
 		vitaminDetailImpl.setGroupId(groupId);
 		vitaminDetailImpl.setCompanyId(companyId);
 		vitaminDetailImpl.setUserId(userId);
@@ -130,6 +129,7 @@ public class VitaminDetailCacheModel
 			vitaminDetailImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		vitaminDetailImpl.setPersistedVitaminId(persistedVitaminId);
 		vitaminDetailImpl.setType(type);
 
 		if (value == null) {
@@ -150,8 +150,6 @@ public class VitaminDetailCacheModel
 
 		vitaminDetailId = objectInput.readLong();
 
-		persistedVitaminId = objectInput.readLong();
-
 		groupId = objectInput.readLong();
 
 		companyId = objectInput.readLong();
@@ -160,6 +158,8 @@ public class VitaminDetailCacheModel
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
+		persistedVitaminId = objectInput.readLong();
 
 		type = objectInput.readInt();
 		value = objectInput.readUTF();
@@ -175,8 +175,6 @@ public class VitaminDetailCacheModel
 		}
 
 		objectOutput.writeLong(vitaminDetailId);
-
-		objectOutput.writeLong(persistedVitaminId);
 
 		objectOutput.writeLong(groupId);
 
@@ -194,6 +192,8 @@ public class VitaminDetailCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
+		objectOutput.writeLong(persistedVitaminId);
+
 		objectOutput.writeInt(type);
 
 		if (value == null) {
@@ -206,13 +206,13 @@ public class VitaminDetailCacheModel
 
 	public String uuid;
 	public long vitaminDetailId;
-	public long persistedVitaminId;
 	public long groupId;
 	public long companyId;
 	public long userId;
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
+	public long persistedVitaminId;
 	public int type;
 	public String value;
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.denbinger.vitamins.model;
+package com.dnebinger.vitamins.model;
 
 import java.io.Serializable;
 
@@ -21,35 +21,39 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.denbinger.vitamins.service.http.VitaminDetailServiceSoap}.
+ * This class is used by SOAP remote services, specifically {@link com.dnebinger.vitamins.service.http.PersistedVitaminServiceSoap}.
  *
  * @author Brian Wing Shun Chan
- * @deprecated As of Athanasius (7.3.x), with no direct replacement
  * @generated
  */
-@Deprecated
-public class VitaminDetailSoap implements Serializable {
+public class PersistedVitaminSoap implements Serializable {
 
-	public static VitaminDetailSoap toSoapModel(VitaminDetail model) {
-		VitaminDetailSoap soapModel = new VitaminDetailSoap();
+	public static PersistedVitaminSoap toSoapModel(PersistedVitamin model) {
+		PersistedVitaminSoap soapModel = new PersistedVitaminSoap();
 
 		soapModel.setUuid(model.getUuid());
-		soapModel.setVitaminDetailId(model.getVitaminDetailId());
 		soapModel.setPersistedVitaminId(model.getPersistedVitaminId());
+		soapModel.setSurrogateId(model.getSurrogateId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setGroupName(model.getGroupName());
+		soapModel.setArticleId(model.getArticleId());
+		soapModel.setDescription(model.getDescription());
+		soapModel.setName(model.getName());
 		soapModel.setType(model.getType());
-		soapModel.setValue(model.getValue());
 
 		return soapModel;
 	}
 
-	public static VitaminDetailSoap[] toSoapModels(VitaminDetail[] models) {
-		VitaminDetailSoap[] soapModels = new VitaminDetailSoap[models.length];
+	public static PersistedVitaminSoap[] toSoapModels(
+		PersistedVitamin[] models) {
+
+		PersistedVitaminSoap[] soapModels =
+			new PersistedVitaminSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -58,14 +62,17 @@ public class VitaminDetailSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static VitaminDetailSoap[][] toSoapModels(VitaminDetail[][] models) {
-		VitaminDetailSoap[][] soapModels = null;
+	public static PersistedVitaminSoap[][] toSoapModels(
+		PersistedVitamin[][] models) {
+
+		PersistedVitaminSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new VitaminDetailSoap[models.length][models[0].length];
+			soapModels =
+				new PersistedVitaminSoap[models.length][models[0].length];
 		}
 		else {
-			soapModels = new VitaminDetailSoap[0][0];
+			soapModels = new PersistedVitaminSoap[0][0];
 		}
 
 		for (int i = 0; i < models.length; i++) {
@@ -75,26 +82,28 @@ public class VitaminDetailSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static VitaminDetailSoap[] toSoapModels(List<VitaminDetail> models) {
-		List<VitaminDetailSoap> soapModels = new ArrayList<VitaminDetailSoap>(
-			models.size());
+	public static PersistedVitaminSoap[] toSoapModels(
+		List<PersistedVitamin> models) {
 
-		for (VitaminDetail model : models) {
+		List<PersistedVitaminSoap> soapModels =
+			new ArrayList<PersistedVitaminSoap>(models.size());
+
+		for (PersistedVitamin model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new VitaminDetailSoap[soapModels.size()]);
+		return soapModels.toArray(new PersistedVitaminSoap[soapModels.size()]);
 	}
 
-	public VitaminDetailSoap() {
+	public PersistedVitaminSoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _vitaminDetailId;
+		return _persistedVitaminId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setVitaminDetailId(pk);
+		setPersistedVitaminId(pk);
 	}
 
 	public String getUuid() {
@@ -105,20 +114,20 @@ public class VitaminDetailSoap implements Serializable {
 		_uuid = uuid;
 	}
 
-	public long getVitaminDetailId() {
-		return _vitaminDetailId;
-	}
-
-	public void setVitaminDetailId(long vitaminDetailId) {
-		_vitaminDetailId = vitaminDetailId;
-	}
-
 	public long getPersistedVitaminId() {
 		return _persistedVitaminId;
 	}
 
 	public void setPersistedVitaminId(long persistedVitaminId) {
 		_persistedVitaminId = persistedVitaminId;
+	}
+
+	public String getSurrogateId() {
+		return _surrogateId;
+	}
+
+	public void setSurrogateId(String surrogateId) {
+		_surrogateId = surrogateId;
 	}
 
 	public long getGroupId() {
@@ -169,6 +178,38 @@ public class VitaminDetailSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public String getGroupName() {
+		return _groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		_groupName = groupName;
+	}
+
+	public String getArticleId() {
+		return _articleId;
+	}
+
+	public void setArticleId(String articleId) {
+		_articleId = articleId;
+	}
+
+	public String getDescription() {
+		return _description;
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	public String getName() {
+		return _name;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
 	public int getType() {
 		return _type;
 	}
@@ -177,24 +218,19 @@ public class VitaminDetailSoap implements Serializable {
 		_type = type;
 	}
 
-	public String getValue() {
-		return _value;
-	}
-
-	public void setValue(String value) {
-		_value = value;
-	}
-
 	private String _uuid;
-	private long _vitaminDetailId;
 	private long _persistedVitaminId;
+	private String _surrogateId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private String _groupName;
+	private String _articleId;
+	private String _description;
+	private String _name;
 	private int _type;
-	private String _value;
 
 }

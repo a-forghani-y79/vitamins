@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.denbinger.vitamins.model;
+package com.dnebinger.vitamins.model;
 
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -45,13 +45,13 @@ public class VitaminDetailWrapper
 
 		attributes.put("uuid", getUuid());
 		attributes.put("vitaminDetailId", getVitaminDetailId());
-		attributes.put("persistedVitaminId", getPersistedVitaminId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("persistedVitaminId", getPersistedVitaminId());
 		attributes.put("type", getType());
 		attributes.put("value", getValue());
 
@@ -70,12 +70,6 @@ public class VitaminDetailWrapper
 
 		if (vitaminDetailId != null) {
 			setVitaminDetailId(vitaminDetailId);
-		}
-
-		Long persistedVitaminId = (Long)attributes.get("persistedVitaminId");
-
-		if (persistedVitaminId != null) {
-			setPersistedVitaminId(persistedVitaminId);
 		}
 
 		Long groupId = (Long)attributes.get("groupId");
@@ -112,6 +106,12 @@ public class VitaminDetailWrapper
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		Long persistedVitaminId = (Long)attributes.get("persistedVitaminId");
+
+		if (persistedVitaminId != null) {
+			setPersistedVitaminId(persistedVitaminId);
 		}
 
 		Integer type = (Integer)attributes.get("type");

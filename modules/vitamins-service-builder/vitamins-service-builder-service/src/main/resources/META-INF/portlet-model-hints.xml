@@ -27,7 +27,36 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="type" type="String" />
+		<field name="type" type="int" />
+		<field name="value" type="String" />
+	</model>
+	<model name="com.dnebinger.vitamins.model.PersistedVitamin">
+		<field name="uuid" type="String" />
+		<field name="persistedVitaminId" type="long" />
+		<field name="surrogateId" type="String" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="groupName" type="String" />
+		<field name="articleId" type="String" />
+		<field name="description" type="String" />
+		<field name="name" type="String" />
+		<field name="type" type="int" />
+	</model>
+	<model name="com.dnebinger.vitamins.model.VitaminDetail">
+		<field name="uuid" type="String" />
+		<field name="vitaminDetailId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="persistedVitaminId" type="long" />
+		<field name="type" type="int" />
 		<field name="value" type="String" />
 	</model>
 </model-hints>
