@@ -14,13 +14,9 @@
 
 package com.dnebinger.vitamins.service.impl;
 
-import com.dnebinger.vitamins.model.PersistedVitamin;
 import com.dnebinger.vitamins.model.VitaminDetail;
-import com.dnebinger.vitamins.service.VitaminDetailService;
 import com.dnebinger.vitamins.service.base.VitaminDetailServiceBaseImpl;
-
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;

@@ -20,9 +20,7 @@ import com.dnebinger.vitamins.model.PersistedVitamin;
 import com.dnebinger.vitamins.service.PersistedVitaminLocalService;
 import com.dnebinger.vitamins.service.VitaminDetailLocalService;
 import com.dnebinger.vitamins.service.base.PersistedVitaminLocalServiceBaseImpl;
-
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
@@ -34,8 +32,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-import java.security.Provider;
 import java.util.Date;
 
 
