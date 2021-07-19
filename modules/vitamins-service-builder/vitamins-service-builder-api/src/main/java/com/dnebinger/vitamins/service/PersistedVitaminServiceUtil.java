@@ -37,6 +37,26 @@ public class PersistedVitaminServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.dnebinger.vitamins.service.impl.PersistedVitaminServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.dnebinger.vitamins.model.PersistedVitamin
+			addPersistedVitamin(
+				String id, String name, String groupName, String description,
+				int typeCode, String articleId, String[] chemicalNames,
+				String[] properties, String[] attributes, String[] symptoms,
+				String[] risks,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addPersistedVitamin(
+			id, name, groupName, description, typeCode, articleId,
+			chemicalNames, properties, attributes, symptoms, risks,
+			serviceContext);
+	}
+
+	public static void deletePersistedVitamin(String surrogateId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		getService().deletePersistedVitamin(surrogateId);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.
@@ -45,6 +65,43 @@ public class PersistedVitaminServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static com.dnebinger.vitamins.model.PersistedVitamin
+			getPersistedVitamin(String surrogateId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getPersistedVitamin(surrogateId);
+	}
+
+	public static com.dnebinger.vitamins.model.PersistedVitamin
+			patchPersistedVitamin(
+				String oldId, String id, String name, String groupName,
+				String description, int typeCode, String articleId,
+				String[] chemicalNames, String[] properties,
+				String[] attributes, String[] symptoms, String[] risks,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().patchPersistedVitamin(
+			oldId, id, name, groupName, description, typeCode, articleId,
+			chemicalNames, properties, attributes, symptoms, risks,
+			serviceContext);
+	}
+
+	public static com.dnebinger.vitamins.model.PersistedVitamin
+			updatePersistedVitamin(
+				String oldId, String id, String name, String groupName,
+				String description, int typeCode, String articleId,
+				String[] chemicalNames, String[] properties,
+				String[] attributes, String[] symptoms, String[] risks,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updatePersistedVitamin(
+			oldId, id, name, groupName, description, typeCode, articleId,
+			chemicalNames, properties, attributes, symptoms, risks,
+			serviceContext);
 	}
 
 	public static PersistedVitaminService getService() {

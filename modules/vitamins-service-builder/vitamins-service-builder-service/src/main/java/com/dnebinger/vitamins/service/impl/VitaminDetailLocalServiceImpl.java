@@ -14,11 +14,22 @@
 
 package com.dnebinger.vitamins.service.impl;
 
+import com.dnebinger.vitamins.model.VitaminDetail;
+import com.dnebinger.vitamins.service.VitaminDetailLocalService;
 import com.dnebinger.vitamins.service.base.VitaminDetailLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.ResourceConstants;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the vitamin detail local service.
@@ -45,4 +56,70 @@ public class VitaminDetailLocalServiceImpl
 	 *
 	 * Never reference this class directly. Use <code>com.dnebinger.vitamins.service.VitaminDetailLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.dnebinger.vitamins.service.VitaminDetailLocalServiceUtil</code>.
 	 */
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(VitaminDetailLocalService.class);
+
+	public VitaminDetail addVitaminDetail(long persistedVitaminId, int typeCode, String value, ServiceContext serviceContext) throws PortalException {
+		VitaminDetail vitaminDetail = vitaminDetailPersistence.create(persistedVitaminId);
+		vitaminDetail.setType(typeCode);
+		vitaminDetail.setValue(value);
+
+		Date now = new Date();
+
+		vitaminDetail.setCompanyId(serviceContext.getCompanyId());
+		vitaminDetail.setCreateDate(serviceContext.getCreateDate(now));
+		vitaminDetail.setGroupId(serviceContext.getScopeGroupId());
+		vitaminDetail.setModifiedDate(serviceContext.getModifiedDate(now));
+		vitaminDetail.setUserId(serviceContext.getUserId());
+
+		User user = userLocalService.getUser(serviceContext.getUserId());
+
+		if (user!=null){
+			vitaminDetail.setUserName(user.getFullName());
+			vitaminDetail.setUserUuid(user.getUuid());
+		}
+
+		vitaminDetail = addVitaminDetail(vitaminDetail);
+
+		return vitaminDetail;
+	}
+
+	public void deleteAllVitaminDetails(long persistedVitaminId){
+		List<VitaminDetail> details = vitaminDetailPersistence.findByPersistedVitaminId(persistedVitaminId);
+
+		if (details!=null && !details.isEmpty())
+			for (VitaminDetail detail : details) {
+				deleteVitaminDetail(detail);
+			}
+
+	}
+
+	public void deleteVitaminDetailByType(long persistedVitaminId, int detailType){
+		List<VitaminDetail> details = vitaminDetailPersistence.findByPersistedVitaminIdType(persistedVitaminId, detailType);
+		if (details!=null && !details.isEmpty())
+			for (VitaminDetail detail : details) {
+				deleteVitaminDetail(detail);
+			}
+	}
+
+	@Override
+	public VitaminDetail deleteVitaminDetail(long vitaminDetailId) throws PortalException {
+		VitaminDetail vitaminDetail = fetchVitaminDetail(vitaminDetailId);
+		if (vitaminDetail!=null){}
+//			resourceLocalService.deleteResource(vitaminDetail.getCompanyId(), VitaminDetail.class.getName(),
+//					ResourceConstants.SCOPE_INDIVIDUAL,vitaminDetail.getVitaminDetailId());
+		return super.deleteVitaminDetail(vitaminDetailId);
+	}
+
+	@Override
+	public VitaminDetail deleteVitaminDetail(VitaminDetail vitaminDetail) {
+//		try {
+//			resourceLocalService.deleteResource(
+//					vitaminDetail.getCompanyId(), VitaminDetail.class.getName(),
+//					ResourceConstants.SCOPE_INDIVIDUAL, vitaminDetail.getVitaminDetailId());
+//		} catch (PortalException e) {
+//			LOGGER.warn("Error deleting vitamin detail permissions: " + e.getMessage(), e);
+//		}
+		return super.deleteVitaminDetail(vitaminDetail);
+	}
 }

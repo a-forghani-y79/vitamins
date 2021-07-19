@@ -37,6 +37,14 @@ public class VitaminDetailLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.dnebinger.vitamins.service.impl.VitaminDetailLocalServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.dnebinger.vitamins.model.VitaminDetail addVitaminDetail(
+			long persistedVitaminId, int typeCode, String value,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addVitaminDetail(
+			persistedVitaminId, typeCode, value, serviceContext);
+	}
 
 	/**
 	 * Adds the vitamin detail to the database. Also notifies the appropriate model listeners.
@@ -64,6 +72,10 @@ public class VitaminDetailLocalServiceUtil {
 		createVitaminDetail(long vitaminDetailId) {
 
 		return getService().createVitaminDetail(vitaminDetailId);
+	}
+
+	public static void deleteAllVitaminDetails(long persistedVitaminId) {
+		getService().deleteAllVitaminDetails(persistedVitaminId);
 	}
 
 	/**
@@ -110,6 +122,12 @@ public class VitaminDetailLocalServiceUtil {
 			com.dnebinger.vitamins.model.VitaminDetail vitaminDetail) {
 
 		return getService().deleteVitaminDetail(vitaminDetail);
+	}
+
+	public static void deleteVitaminDetailByType(
+		long persistedVitaminId, int detailType) {
+
+		getService().deleteVitaminDetailByType(persistedVitaminId, detailType);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery

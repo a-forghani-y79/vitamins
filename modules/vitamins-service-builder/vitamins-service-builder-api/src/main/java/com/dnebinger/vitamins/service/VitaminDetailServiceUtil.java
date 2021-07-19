@@ -37,6 +37,44 @@ public class VitaminDetailServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.dnebinger.vitamins.service.impl.VitaminDetailServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.dnebinger.vitamins.model.VitaminDetail addVitaminDetail(
+			long persistedVitaminId, int typeCode, String value,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addVitaminDetail(
+			persistedVitaminId, typeCode, value, serviceContext);
+	}
+
+	public static void deleteAllVitaminDetails(long persistedVitaminId) {
+		getService().deleteAllVitaminDetails(persistedVitaminId);
+	}
+
+	public static com.dnebinger.vitamins.model.VitaminDetail
+			deleteVitaminDetail(long vitaminDetailId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().deleteVitaminDetail(vitaminDetailId);
+	}
+
+	public static com.dnebinger.vitamins.model.VitaminDetail
+		deleteVitaminDetail(
+			com.dnebinger.vitamins.model.VitaminDetail vitaminDetail) {
+
+		return getService().deleteVitaminDetail(vitaminDetail);
+	}
+
+	public static void deleteVitaminDetailsByType(
+		long persistedVitaminId, int typeCode) {
+
+		getService().deleteVitaminDetailsByType(persistedVitaminId, typeCode);
+	}
+
+	public static java.util.List<com.dnebinger.vitamins.model.VitaminDetail>
+		getAllVitaminDetails(long persistedVitaminId) {
+
+		return getService().getAllVitaminDetails(persistedVitaminId);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.
@@ -45,6 +83,13 @@ public class VitaminDetailServiceUtil {
 	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<com.dnebinger.vitamins.model.VitaminDetail>
+		getVitaminDetailsByType(long persistedVitaminId, int typeCode) {
+
+		return getService().getVitaminDetailsByType(
+			persistedVitaminId, typeCode);
 	}
 
 	public static VitaminDetailService getService() {

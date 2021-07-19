@@ -33,6 +33,16 @@ public class VitaminDetailLocalServiceWrapper
 		_vitaminDetailLocalService = vitaminDetailLocalService;
 	}
 
+	@Override
+	public com.dnebinger.vitamins.model.VitaminDetail addVitaminDetail(
+			long persistedVitaminId, int typeCode, String value,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _vitaminDetailLocalService.addVitaminDetail(
+			persistedVitaminId, typeCode, value, serviceContext);
+	}
+
 	/**
 	 * Adds the vitamin detail to the database. Also notifies the appropriate model listeners.
 	 *
@@ -61,6 +71,11 @@ public class VitaminDetailLocalServiceWrapper
 		long vitaminDetailId) {
 
 		return _vitaminDetailLocalService.createVitaminDetail(vitaminDetailId);
+	}
+
+	@Override
+	public void deleteAllVitaminDetails(long persistedVitaminId) {
+		_vitaminDetailLocalService.deleteAllVitaminDetails(persistedVitaminId);
 	}
 
 	/**
@@ -108,6 +123,14 @@ public class VitaminDetailLocalServiceWrapper
 		com.dnebinger.vitamins.model.VitaminDetail vitaminDetail) {
 
 		return _vitaminDetailLocalService.deleteVitaminDetail(vitaminDetail);
+	}
+
+	@Override
+	public void deleteVitaminDetailByType(
+		long persistedVitaminId, int detailType) {
+
+		_vitaminDetailLocalService.deleteVitaminDetailByType(
+			persistedVitaminId, detailType);
 	}
 
 	@Override

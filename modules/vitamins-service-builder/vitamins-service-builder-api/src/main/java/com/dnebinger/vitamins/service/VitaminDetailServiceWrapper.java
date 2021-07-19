@@ -32,6 +32,51 @@ public class VitaminDetailServiceWrapper
 		_vitaminDetailService = vitaminDetailService;
 	}
 
+	@Override
+	public com.dnebinger.vitamins.model.VitaminDetail addVitaminDetail(
+			long persistedVitaminId, int typeCode, String value,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _vitaminDetailService.addVitaminDetail(
+			persistedVitaminId, typeCode, value, serviceContext);
+	}
+
+	@Override
+	public void deleteAllVitaminDetails(long persistedVitaminId) {
+		_vitaminDetailService.deleteAllVitaminDetails(persistedVitaminId);
+	}
+
+	@Override
+	public com.dnebinger.vitamins.model.VitaminDetail deleteVitaminDetail(
+			long vitaminDetailId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _vitaminDetailService.deleteVitaminDetail(vitaminDetailId);
+	}
+
+	@Override
+	public com.dnebinger.vitamins.model.VitaminDetail deleteVitaminDetail(
+		com.dnebinger.vitamins.model.VitaminDetail vitaminDetail) {
+
+		return _vitaminDetailService.deleteVitaminDetail(vitaminDetail);
+	}
+
+	@Override
+	public void deleteVitaminDetailsByType(
+		long persistedVitaminId, int typeCode) {
+
+		_vitaminDetailService.deleteVitaminDetailsByType(
+			persistedVitaminId, typeCode);
+	}
+
+	@Override
+	public java.util.List<com.dnebinger.vitamins.model.VitaminDetail>
+		getAllVitaminDetails(long persistedVitaminId) {
+
+		return _vitaminDetailService.getAllVitaminDetails(persistedVitaminId);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -40,6 +85,14 @@ public class VitaminDetailServiceWrapper
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _vitaminDetailService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public java.util.List<com.dnebinger.vitamins.model.VitaminDetail>
+		getVitaminDetailsByType(long persistedVitaminId, int typeCode) {
+
+		return _vitaminDetailService.getVitaminDetailsByType(
+			persistedVitaminId, typeCode);
 	}
 
 	@Override

@@ -14,9 +14,16 @@
 
 package com.dnebinger.vitamins.service.http;
 
+import com.dnebinger.vitamins.service.PersistedVitaminServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * <code>com.dnebinger.vitamins.service.PersistedVitaminServiceUtil</code> service
+ * <code>PersistedVitaminServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -54,4 +61,117 @@ package com.dnebinger.vitamins.service.http;
  * @generated
  */
 public class PersistedVitaminServiceSoap {
+
+	public static com.dnebinger.vitamins.model.PersistedVitaminSoap
+			getPersistedVitamin(String surrogateId)
+		throws RemoteException {
+
+		try {
+			com.dnebinger.vitamins.model.PersistedVitamin returnValue =
+				PersistedVitaminServiceUtil.getPersistedVitamin(surrogateId);
+
+			return com.dnebinger.vitamins.model.PersistedVitaminSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.dnebinger.vitamins.model.PersistedVitaminSoap
+			addPersistedVitamin(
+				String id, String name, String groupName, String description,
+				int typeCode, String articleId, String[] chemicalNames,
+				String[] properties, String[] attributes, String[] symptoms,
+				String[] risks,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.dnebinger.vitamins.model.PersistedVitamin returnValue =
+				PersistedVitaminServiceUtil.addPersistedVitamin(
+					id, name, groupName, description, typeCode, articleId,
+					chemicalNames, properties, attributes, symptoms, risks,
+					serviceContext);
+
+			return com.dnebinger.vitamins.model.PersistedVitaminSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.dnebinger.vitamins.model.PersistedVitaminSoap
+			updatePersistedVitamin(
+				String oldId, String id, String name, String groupName,
+				String description, int typeCode, String articleId,
+				String[] chemicalNames, String[] properties,
+				String[] attributes, String[] symptoms, String[] risks,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.dnebinger.vitamins.model.PersistedVitamin returnValue =
+				PersistedVitaminServiceUtil.updatePersistedVitamin(
+					oldId, id, name, groupName, description, typeCode,
+					articleId, chemicalNames, properties, attributes, symptoms,
+					risks, serviceContext);
+
+			return com.dnebinger.vitamins.model.PersistedVitaminSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.dnebinger.vitamins.model.PersistedVitaminSoap
+			patchPersistedVitamin(
+				String oldId, String id, String name, String groupName,
+				String description, int typeCode, String articleId,
+				String[] chemicalNames, String[] properties,
+				String[] attributes, String[] symptoms, String[] risks,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.dnebinger.vitamins.model.PersistedVitamin returnValue =
+				PersistedVitaminServiceUtil.patchPersistedVitamin(
+					oldId, id, name, groupName, description, typeCode,
+					articleId, chemicalNames, properties, attributes, symptoms,
+					risks, serviceContext);
+
+			return com.dnebinger.vitamins.model.PersistedVitaminSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static void deletePersistedVitamin(String surrogateId)
+		throws RemoteException {
+
+		try {
+			PersistedVitaminServiceUtil.deletePersistedVitamin(surrogateId);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		PersistedVitaminServiceSoap.class);
+
 }

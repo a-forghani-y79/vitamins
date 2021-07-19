@@ -14,9 +14,16 @@
 
 package com.dnebinger.vitamins.service.http;
 
+import com.dnebinger.vitamins.service.VitaminDetailServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * <code>com.dnebinger.vitamins.service.VitaminDetailServiceUtil</code> service
+ * <code>VitaminDetailServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -54,4 +61,135 @@ package com.dnebinger.vitamins.service.http;
  * @generated
  */
 public class VitaminDetailServiceSoap {
+
+	public static com.dnebinger.vitamins.model.VitaminDetailSoap
+			addVitaminDetail(
+				long persistedVitaminId, int typeCode, String value,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.dnebinger.vitamins.model.VitaminDetail returnValue =
+				VitaminDetailServiceUtil.addVitaminDetail(
+					persistedVitaminId, typeCode, value, serviceContext);
+
+			return com.dnebinger.vitamins.model.VitaminDetailSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static void deleteAllVitaminDetails(long persistedVitaminId)
+		throws RemoteException {
+
+		try {
+			VitaminDetailServiceUtil.deleteAllVitaminDetails(
+				persistedVitaminId);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static void deleteVitaminDetailsByType(
+			long persistedVitaminId, int typeCode)
+		throws RemoteException {
+
+		try {
+			VitaminDetailServiceUtil.deleteVitaminDetailsByType(
+				persistedVitaminId, typeCode);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.dnebinger.vitamins.model.VitaminDetailSoap
+			deleteVitaminDetail(long vitaminDetailId)
+		throws RemoteException {
+
+		try {
+			com.dnebinger.vitamins.model.VitaminDetail returnValue =
+				VitaminDetailServiceUtil.deleteVitaminDetail(vitaminDetailId);
+
+			return com.dnebinger.vitamins.model.VitaminDetailSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.dnebinger.vitamins.model.VitaminDetailSoap
+			deleteVitaminDetail(
+				com.dnebinger.vitamins.model.VitaminDetailSoap vitaminDetail)
+		throws RemoteException {
+
+		try {
+			com.dnebinger.vitamins.model.VitaminDetail returnValue =
+				VitaminDetailServiceUtil.deleteVitaminDetail(
+					com.dnebinger.vitamins.model.impl.VitaminDetailModelImpl.
+						toModel(vitaminDetail));
+
+			return com.dnebinger.vitamins.model.VitaminDetailSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.dnebinger.vitamins.model.VitaminDetailSoap[]
+			getAllVitaminDetails(long persistedVitaminId)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.dnebinger.vitamins.model.VitaminDetail>
+				returnValue = VitaminDetailServiceUtil.getAllVitaminDetails(
+					persistedVitaminId);
+
+			return com.dnebinger.vitamins.model.VitaminDetailSoap.toSoapModels(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.dnebinger.vitamins.model.VitaminDetailSoap[]
+			getVitaminDetailsByType(long persistedVitaminId, int typeCode)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.dnebinger.vitamins.model.VitaminDetail>
+				returnValue = VitaminDetailServiceUtil.getVitaminDetailsByType(
+					persistedVitaminId, typeCode);
+
+			return com.dnebinger.vitamins.model.VitaminDetailSoap.toSoapModels(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		VitaminDetailServiceSoap.class);
+
 }

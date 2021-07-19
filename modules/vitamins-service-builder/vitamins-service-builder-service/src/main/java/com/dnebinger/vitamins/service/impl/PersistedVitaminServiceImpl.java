@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -14,11 +14,21 @@
 
 package com.dnebinger.vitamins.service.impl;
 
+import com.dnebinger.vitamins.model.PersistedVitamin;
 import com.dnebinger.vitamins.service.base.PersistedVitaminServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionHelper;
+import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * The implementation of the persisted vitamin remote service.
@@ -34,18 +44,67 @@ import org.osgi.service.component.annotations.Component;
  * @see PersistedVitaminServiceBaseImpl
  */
 @Component(
-	property = {
-		"json.web.service.context.name=neb",
-		"json.web.service.context.path=PersistedVitamin"
-	},
-	service = AopService.class
+        property = {
+                "json.web.service.context.name=neb",
+                "json.web.service.context.path=PersistedVitamin"
+        },
+        service = AopService.class
 )
 public class PersistedVitaminServiceImpl
-	extends PersistedVitaminServiceBaseImpl {
+        extends PersistedVitaminServiceBaseImpl {
 
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use <code>com.dnebinger.vitamins.service.PersistedVitaminServiceUtil</code> to access the persisted vitamin remote service.
-	 */
+    /*
+     * NOTE FOR DEVELOPERS:
+     *
+     * Never reference this class directly. Always use <code>com.dnebinger.vitamins.service.PersistedVitaminServiceUtil</code> to access the persisted vitamin remote service.
+     */
+
+    @Reference(
+            policy = ReferencePolicy.DYNAMIC,
+            policyOption = ReferencePolicyOption.GREEDY,
+            target = "(model.class.name=com.denbinger.vitamins.model.PersistedVitamin)"
+    )
+    private volatile ModelResourcePermission<PersistedVitamin> persistedVitaminModelResourcePermission;
+
+    public PersistedVitamin getPersistedVitamin(String surrogateId) throws PortalException {
+        PersistedVitamin vitamin = persistedVitaminLocalService.getPersistedVitamin(surrogateId);
+
+        persistedVitaminModelResourcePermission.check(getPermissionChecker(), vitamin, ActionKeys.VIEW);
+        return vitamin;
+    }
+
+    public PersistedVitamin addPersistedVitamin(String id, String name, String groupName, String description, int typeCode,
+                                                String articleId, String[] chemicalNames, String[] properties, String[] attributes,
+                                                String[] symptoms, String[] risks, ServiceContext serviceContext) throws PortalException {
+        ModelResourcePermissionHelper.check(persistedVitaminModelResourcePermission, getPermissionChecker(),
+                serviceContext.getScopeGroupId(), 0, ActionKeys.ADD_ENTRY);
+        return persistedVitaminLocalService.addPersistedVitamin(id, name, groupName, description, typeCode, articleId,
+                chemicalNames, properties, attributes, symptoms, risks, serviceContext);
+    }
+
+    public PersistedVitamin updatePersistedVitamin(String oldId, String id, String name, String groupName, String description,
+                                                   int typeCode, String articleId, String[] chemicalNames, String[] properties,
+                                                   String[] attributes, String[] symptoms, String[] risks, ServiceContext serviceContext) throws PortalException {
+        persistedVitaminModelResourcePermission.check(getPermissionChecker(),
+                persistedVitaminLocalService.getPersistedVitamin(oldId), ActionKeys.UPDATE);
+        return persistedVitaminLocalService.updatePersistedVitamin(oldId, id, name, groupName, description, typeCode, articleId,
+                chemicalNames, properties, attributes, symptoms, risks, serviceContext);
+    }
+
+    public PersistedVitamin patchPersistedVitamin(String oldId, String id, String name, String groupName, String description,
+                                                  int typeCode, String articleId, String[] chemicalNames, String[] properties,
+                                                  String[] attributes, String[] symptoms,
+                                                  String[] risks, ServiceContext serviceContext) throws PortalException {
+        persistedVitaminModelResourcePermission.check(getPermissionChecker(),
+                persistedVitaminLocalService.getPersistedVitamin(oldId),
+                ActionKeys.UPDATE);
+        return persistedVitaminLocalService.patchPersistedVitamin(oldId, id, name, groupName, description, typeCode, articleId,
+                chemicalNames, properties, attributes, symptoms, risks, serviceContext);
+    }
+
+    public void deletePersistedVitamin(String surrogateId) throws PortalException {
+        persistedVitaminModelResourcePermission.check(getPermissionChecker(),
+                persistedVitaminLocalService.getPersistedVitamin(surrogateId), ActionKeys.DELETE);
+        persistedVitaminLocalService.deleteVitamin(surrogateId);
+    }
 }
