@@ -1,5 +1,0 @@
-Bundle-Name: headless-vitamins-api
-Bundle-SymbolicName: com.dnebinger.headless.vitamins
-Bundle-Version: 1.0.0
-Export-Package: com.dnebinger.headless.vitamins.dto.v1_0_0 \
- com.dnebinger.headless.vitamins.resource.v1_0_0
