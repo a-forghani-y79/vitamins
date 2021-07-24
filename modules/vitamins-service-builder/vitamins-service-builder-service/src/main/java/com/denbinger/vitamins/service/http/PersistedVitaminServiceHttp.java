@@ -93,6 +93,47 @@ public class PersistedVitaminServiceHttp {
 	}
 
 	public static com.denbinger.vitamins.model.PersistedVitamin
+			getPersistedVitamin(
+				HttpPrincipal httpPrincipal, long persistedVitaminId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				PersistedVitaminServiceUtil.class, "getPersistedVitamin",
+				_getPersistedVitaminParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, persistedVitaminId);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.denbinger.vitamins.model.PersistedVitamin)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static com.denbinger.vitamins.model.PersistedVitamin
 			addPersistedVitamin(
 				HttpPrincipal httpPrincipal, String id, String name,
 				String groupName, String description, int typeCode,
@@ -104,7 +145,7 @@ public class PersistedVitaminServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				PersistedVitaminServiceUtil.class, "addPersistedVitamin",
-				_addPersistedVitaminParameterTypes1);
+				_addPersistedVitaminParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, id, name, groupName, description, typeCode,
@@ -151,7 +192,7 @@ public class PersistedVitaminServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				PersistedVitaminServiceUtil.class, "updatePersistedVitamin",
-				_updatePersistedVitaminParameterTypes2);
+				_updatePersistedVitaminParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, oldId, id, name, groupName, description, typeCode,
@@ -198,7 +239,7 @@ public class PersistedVitaminServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				PersistedVitaminServiceUtil.class, "patchPersistedVitamin",
-				_patchPersistedVitaminParameterTypes3);
+				_patchPersistedVitaminParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, oldId, id, name, groupName, description, typeCode,
@@ -240,7 +281,7 @@ public class PersistedVitaminServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				PersistedVitaminServiceUtil.class, "deletePersistedVitamin",
-				_deletePersistedVitaminParameterTypes4);
+				_deletePersistedVitaminParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, surrogateId);
@@ -274,28 +315,30 @@ public class PersistedVitaminServiceHttp {
 
 	private static final Class<?>[] _getPersistedVitaminParameterTypes0 =
 		new Class[] {String.class};
-	private static final Class<?>[] _addPersistedVitaminParameterTypes1 =
+	private static final Class<?>[] _getPersistedVitaminParameterTypes1 =
+		new Class[] {long.class};
+	private static final Class<?>[] _addPersistedVitaminParameterTypes2 =
 		new Class[] {
 			String.class, String.class, String.class, String.class, int.class,
 			String.class, String[].class, String[].class, String[].class,
 			String[].class, String[].class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _updatePersistedVitaminParameterTypes2 =
+	private static final Class<?>[] _updatePersistedVitaminParameterTypes3 =
 		new Class[] {
 			String.class, String.class, String.class, String.class,
 			String.class, int.class, String.class, String[].class,
 			String[].class, String[].class, String[].class, String[].class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _patchPersistedVitaminParameterTypes3 =
+	private static final Class<?>[] _patchPersistedVitaminParameterTypes4 =
 		new Class[] {
 			String.class, String.class, String.class, String.class,
 			String.class, int.class, String.class, String[].class,
 			String[].class, String[].class, String[].class, String[].class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _deletePersistedVitaminParameterTypes4 =
+	private static final Class<?>[] _deletePersistedVitaminParameterTypes5 =
 		new Class[] {String.class};
 
 }

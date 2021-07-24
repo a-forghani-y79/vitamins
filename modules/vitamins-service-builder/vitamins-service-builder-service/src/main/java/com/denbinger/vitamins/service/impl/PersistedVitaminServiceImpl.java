@@ -70,6 +70,16 @@ public class PersistedVitaminServiceImpl
         return vitamin;
     }
 
+    public PersistedVitamin getPersistedVitamin(final long persistedVitaminId) throws PortalException {
+        PersistedVitamin vitamin = persistedVitaminLocalService.getPersistedVitamin(
+                persistedVitaminId);
+
+        persistedVitaminModelResourcePermission.check(
+                getPermissionChecker(), vitamin, ActionKeys.VIEW);
+
+        return vitamin;
+    }
+
     public PersistedVitamin addPersistedVitamin(String id, String name, String groupName, String description, int typeCode,
                                                 String articleId, String[] chemicalNames, String[] properties, String[] attributes,
                                                 String[] symptoms, String[] risks, ServiceContext serviceContext) throws PortalException {

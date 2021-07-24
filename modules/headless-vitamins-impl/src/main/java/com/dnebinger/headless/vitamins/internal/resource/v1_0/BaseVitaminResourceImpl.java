@@ -92,7 +92,7 @@ public abstract class BaseVitaminResourceImpl
 	@Path("/vitamins")
 	@Produces({"application/json", "application/xml"})
 	@Tags(value = {@Tag(name = "Vitamin")})
-	public Page<Vitamin> getViatminsPage(
+	public Page<Vitamin> getVitaminsPage(
 			@Parameter(hidden = true) @QueryParam("search") String search,
 			@Context Filter filter, @Context Pagination pagination,
 			@Context Sort[] sorts)
@@ -113,8 +113,44 @@ public abstract class BaseVitaminResourceImpl
 	@POST
 	@Produces({"application/json", "application/xml"})
 	@Tags(value = {@Tag(name = "Vitamin")})
-	public Vitamin postViatmin(Vitamin vitamin) throws Exception {
+	public Vitamin postVitamin(Vitamin vitamin) throws Exception {
 		return new Vitamin();
+	}
+
+	/**
+	 * Invoke this method with the command line:
+	 *
+	 * curl -X 'POST' 'http://localhost:8080/o/headless-vitamins/V1.0/vitamins/batch'  -u 'test@liferay.com:test'
+	 */
+	@Consumes("application/json")
+	@Override
+	@Parameters(
+		value = {@Parameter(in = ParameterIn.QUERY, name = "callbackURL")}
+	)
+	@Path("/vitamins/batch")
+	@POST
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Vitamin")})
+	public Response postVitaminBatch(
+			@Parameter(hidden = true) @QueryParam("callbackURL") String
+				callbackURL,
+			Object object)
+		throws Exception {
+
+		vulcanBatchEngineImportTaskResource.setContextAcceptLanguage(
+			contextAcceptLanguage);
+		vulcanBatchEngineImportTaskResource.setContextCompany(contextCompany);
+		vulcanBatchEngineImportTaskResource.setContextHttpServletRequest(
+			contextHttpServletRequest);
+		vulcanBatchEngineImportTaskResource.setContextUriInfo(contextUriInfo);
+		vulcanBatchEngineImportTaskResource.setContextUser(contextUser);
+
+		Response.ResponseBuilder responseBuilder = Response.accepted();
+
+		return responseBuilder.entity(
+			vulcanBatchEngineImportTaskResource.postImportTask(
+				Vitamin.class.getName(), callbackURL, null, object)
+		).build();
 	}
 
 	/**
@@ -327,6 +363,10 @@ public abstract class BaseVitaminResourceImpl
 			java.util.Collection<Vitamin> vitamins,
 			Map<String, Serializable> parameters)
 		throws Exception {
+
+		for (Vitamin vitamin : vitamins) {
+			postVitamin(vitamin);
+		}
 	}
 
 	@Override
@@ -361,7 +401,7 @@ public abstract class BaseVitaminResourceImpl
 			Map<String, Serializable> parameters, String search)
 		throws Exception {
 
-		return null;
+		return getVitaminsPage(search, filter, pagination, sorts);
 	}
 
 	@Override

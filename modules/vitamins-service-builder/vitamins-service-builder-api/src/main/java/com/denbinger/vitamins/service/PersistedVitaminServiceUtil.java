@@ -68,6 +68,13 @@ public class PersistedVitaminServiceUtil {
 	}
 
 	public static com.denbinger.vitamins.model.PersistedVitamin
+			getPersistedVitamin(long persistedVitaminId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getPersistedVitamin(persistedVitaminId);
+	}
+
+	public static com.denbinger.vitamins.model.PersistedVitamin
 			getPersistedVitamin(String surrogateId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 

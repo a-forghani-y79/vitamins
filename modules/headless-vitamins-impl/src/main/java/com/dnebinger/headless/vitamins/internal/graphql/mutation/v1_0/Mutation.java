@@ -40,13 +40,26 @@ public class Mutation {
 	}
 
 	@GraphQLField(description = "Create a new vitamin/mineral")
-	public Vitamin createViatmin(@GraphQLName("vitamin") Vitamin vitamin)
+	public Vitamin createVitamin(@GraphQLName("vitamin") Vitamin vitamin)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_vitaminResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			vitaminResource -> vitaminResource.postViatmin(vitamin));
+			vitaminResource -> vitaminResource.postVitamin(vitamin));
+	}
+
+	@GraphQLField
+	public Response createVitaminBatch(
+			@GraphQLName("callbackURL") String callbackURL,
+			@GraphQLName("object") Object object)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_vitaminResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			vitaminResource -> vitaminResource.postVitaminBatch(
+				callbackURL, object));
 	}
 
 	@GraphQLField(

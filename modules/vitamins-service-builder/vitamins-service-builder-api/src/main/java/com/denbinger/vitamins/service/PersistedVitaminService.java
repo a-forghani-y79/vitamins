@@ -69,6 +69,10 @@ public interface PersistedVitaminService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedVitamin getPersistedVitamin(long persistedVitaminId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedVitamin getPersistedVitamin(String surrogateId)
 		throws PortalException;
 

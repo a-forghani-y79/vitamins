@@ -45,12 +45,12 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {viatmins(filter: ___, page: ___, pageSize: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {vitamins(filter: ___, page: ___, pageSize: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField(
 		description = "Retrieves the list of vitamins and minerals. Results can be paginated, searched, and sorted."
 	)
-	public VitaminPage viatmins(
+	public VitaminPage vitamins(
 			@GraphQLName("search") String search,
 			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
@@ -62,7 +62,7 @@ public class Query {
 			_vitaminResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			vitaminResource -> new VitaminPage(
-				vitaminResource.getViatminsPage(
+				vitaminResource.getVitaminsPage(
 					search,
 					_filterBiFunction.apply(vitaminResource, filterString),
 					Pagination.of(page, pageSize),

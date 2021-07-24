@@ -195,17 +195,17 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testGetViatminsPage() throws Exception {
-		Page<Vitamin> page = vitaminResource.getViatminsPage(
+	public void testGetVitaminsPage() throws Exception {
+		Page<Vitamin> page = vitaminResource.getVitaminsPage(
 			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(0, page.getTotalCount());
 
-		Vitamin vitamin1 = testGetViatminsPage_addVitamin(randomVitamin());
+		Vitamin vitamin1 = testGetVitaminsPage_addVitamin(randomVitamin());
 
-		Vitamin vitamin2 = testGetViatminsPage_addVitamin(randomVitamin());
+		Vitamin vitamin2 = testGetVitaminsPage_addVitamin(randomVitamin());
 
-		page = vitaminResource.getViatminsPage(
+		page = vitaminResource.getVitaminsPage(
 			null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -220,7 +220,7 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testGetViatminsPageWithFilterDateTimeEquals() throws Exception {
+	public void testGetVitaminsPageWithFilterDateTimeEquals() throws Exception {
 		List<EntityField> entityFields = getEntityFields(
 			EntityField.Type.DATE_TIME);
 
@@ -230,10 +230,10 @@ public abstract class BaseVitaminResourceTestCase {
 
 		Vitamin vitamin1 = randomVitamin();
 
-		vitamin1 = testGetViatminsPage_addVitamin(vitamin1);
+		vitamin1 = testGetVitaminsPage_addVitamin(vitamin1);
 
 		for (EntityField entityField : entityFields) {
-			Page<Vitamin> page = vitaminResource.getViatminsPage(
+			Page<Vitamin> page = vitaminResource.getVitaminsPage(
 				null, getFilterString(entityField, "between", vitamin1),
 				Pagination.of(1, 2), null);
 
@@ -244,7 +244,7 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testGetViatminsPageWithFilterStringEquals() throws Exception {
+	public void testGetVitaminsPageWithFilterStringEquals() throws Exception {
 		List<EntityField> entityFields = getEntityFields(
 			EntityField.Type.STRING);
 
@@ -252,13 +252,13 @@ public abstract class BaseVitaminResourceTestCase {
 			return;
 		}
 
-		Vitamin vitamin1 = testGetViatminsPage_addVitamin(randomVitamin());
+		Vitamin vitamin1 = testGetVitaminsPage_addVitamin(randomVitamin());
 
 		@SuppressWarnings("PMD.UnusedLocalVariable")
-		Vitamin vitamin2 = testGetViatminsPage_addVitamin(randomVitamin());
+		Vitamin vitamin2 = testGetVitaminsPage_addVitamin(randomVitamin());
 
 		for (EntityField entityField : entityFields) {
-			Page<Vitamin> page = vitaminResource.getViatminsPage(
+			Page<Vitamin> page = vitaminResource.getVitaminsPage(
 				null, getFilterString(entityField, "eq", vitamin1),
 				Pagination.of(1, 2), null);
 
@@ -269,21 +269,21 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testGetViatminsPageWithPagination() throws Exception {
-		Vitamin vitamin1 = testGetViatminsPage_addVitamin(randomVitamin());
+	public void testGetVitaminsPageWithPagination() throws Exception {
+		Vitamin vitamin1 = testGetVitaminsPage_addVitamin(randomVitamin());
 
-		Vitamin vitamin2 = testGetViatminsPage_addVitamin(randomVitamin());
+		Vitamin vitamin2 = testGetVitaminsPage_addVitamin(randomVitamin());
 
-		Vitamin vitamin3 = testGetViatminsPage_addVitamin(randomVitamin());
+		Vitamin vitamin3 = testGetVitaminsPage_addVitamin(randomVitamin());
 
-		Page<Vitamin> page1 = vitaminResource.getViatminsPage(
+		Page<Vitamin> page1 = vitaminResource.getVitaminsPage(
 			null, null, Pagination.of(1, 2), null);
 
 		List<Vitamin> vitamins1 = (List<Vitamin>)page1.getItems();
 
 		Assert.assertEquals(vitamins1.toString(), 2, vitamins1.size());
 
-		Page<Vitamin> page2 = vitaminResource.getViatminsPage(
+		Page<Vitamin> page2 = vitaminResource.getVitaminsPage(
 			null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -292,7 +292,7 @@ public abstract class BaseVitaminResourceTestCase {
 
 		Assert.assertEquals(vitamins2.toString(), 1, vitamins2.size());
 
-		Page<Vitamin> page3 = vitaminResource.getViatminsPage(
+		Page<Vitamin> page3 = vitaminResource.getVitaminsPage(
 			null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -301,8 +301,8 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testGetViatminsPageWithSortDateTime() throws Exception {
-		testGetViatminsPageWithSort(
+	public void testGetVitaminsPageWithSortDateTime() throws Exception {
+		testGetVitaminsPageWithSort(
 			EntityField.Type.DATE_TIME,
 			(entityField, vitamin1, vitamin2) -> {
 				BeanUtils.setProperty(
@@ -312,8 +312,8 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testGetViatminsPageWithSortInteger() throws Exception {
-		testGetViatminsPageWithSort(
+	public void testGetVitaminsPageWithSortInteger() throws Exception {
+		testGetVitaminsPageWithSort(
 			EntityField.Type.INTEGER,
 			(entityField, vitamin1, vitamin2) -> {
 				BeanUtils.setProperty(vitamin1, entityField.getName(), 0);
@@ -322,8 +322,8 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testGetViatminsPageWithSortString() throws Exception {
-		testGetViatminsPageWithSort(
+	public void testGetVitaminsPageWithSortString() throws Exception {
+		testGetVitaminsPageWithSort(
 			EntityField.Type.STRING,
 			(entityField, vitamin1, vitamin2) -> {
 				Class<?> clazz = vitamin1.getClass();
@@ -372,7 +372,7 @@ public abstract class BaseVitaminResourceTestCase {
 			});
 	}
 
-	protected void testGetViatminsPageWithSort(
+	protected void testGetVitaminsPageWithSort(
 			EntityField.Type type,
 			UnsafeTriConsumer<EntityField, Vitamin, Vitamin, Exception>
 				unsafeTriConsumer)
@@ -391,12 +391,12 @@ public abstract class BaseVitaminResourceTestCase {
 			unsafeTriConsumer.accept(entityField, vitamin1, vitamin2);
 		}
 
-		vitamin1 = testGetViatminsPage_addVitamin(vitamin1);
+		vitamin1 = testGetVitaminsPage_addVitamin(vitamin1);
 
-		vitamin2 = testGetViatminsPage_addVitamin(vitamin2);
+		vitamin2 = testGetVitaminsPage_addVitamin(vitamin2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Vitamin> ascPage = vitaminResource.getViatminsPage(
+			Page<Vitamin> ascPage = vitaminResource.getVitaminsPage(
 				null, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
@@ -404,7 +404,7 @@ public abstract class BaseVitaminResourceTestCase {
 				Arrays.asList(vitamin1, vitamin2),
 				(List<Vitamin>)ascPage.getItems());
 
-			Page<Vitamin> descPage = vitaminResource.getViatminsPage(
+			Page<Vitamin> descPage = vitaminResource.getVitaminsPage(
 				null, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
@@ -414,7 +414,7 @@ public abstract class BaseVitaminResourceTestCase {
 		}
 	}
 
-	protected Vitamin testGetViatminsPage_addVitamin(Vitamin vitamin)
+	protected Vitamin testGetVitaminsPage_addVitamin(Vitamin vitamin)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
@@ -422,16 +422,50 @@ public abstract class BaseVitaminResourceTestCase {
 	}
 
 	@Test
-	public void testPostViatmin() throws Exception {
+	public void testGraphQLGetVitaminsPage() throws Exception {
+		GraphQLField graphQLField = new GraphQLField(
+			"vitamins",
+			new HashMap<String, Object>() {
+				{
+					put("page", 1);
+					put("pageSize", 2);
+				}
+			},
+			new GraphQLField("items", getGraphQLFields()),
+			new GraphQLField("page"), new GraphQLField("totalCount"));
+
+		JSONObject vitaminsJSONObject = JSONUtil.getValueAsJSONObject(
+			invokeGraphQLQuery(graphQLField), "JSONObject/data",
+			"JSONObject/vitamins");
+
+		Assert.assertEquals(0, vitaminsJSONObject.get("totalCount"));
+
+		Vitamin vitamin1 = testGraphQLVitamin_addVitamin();
+		Vitamin vitamin2 = testGraphQLVitamin_addVitamin();
+
+		vitaminsJSONObject = JSONUtil.getValueAsJSONObject(
+			invokeGraphQLQuery(graphQLField), "JSONObject/data",
+			"JSONObject/vitamins");
+
+		Assert.assertEquals(2, vitaminsJSONObject.get("totalCount"));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(vitamin1, vitamin2),
+			Arrays.asList(
+				VitaminSerDes.toDTOs(vitaminsJSONObject.getString("items"))));
+	}
+
+	@Test
+	public void testPostVitamin() throws Exception {
 		Vitamin randomVitamin = randomVitamin();
 
-		Vitamin postVitamin = testPostViatmin_addVitamin(randomVitamin);
+		Vitamin postVitamin = testPostVitamin_addVitamin(randomVitamin);
 
 		assertEquals(randomVitamin, postVitamin);
 		assertValid(postVitamin);
 	}
 
-	protected Vitamin testPostViatmin_addVitamin(Vitamin vitamin)
+	protected Vitamin testPostVitamin_addVitamin(Vitamin vitamin)
 		throws Exception {
 
 		throw new UnsupportedOperationException(

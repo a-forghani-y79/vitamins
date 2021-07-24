@@ -96,7 +96,7 @@ components:
 paths:
   "/vitamins":
     get:
-      operationId: getViatminsPage
+      operationId: getVitaminsPage
       tags: [ "Vitamin" ]
       description: Retrieves the list of vitamins and minerals. Results can be paginated, searched, and sorted.
       parameters:
@@ -135,7 +135,7 @@ paths:
                   $ref: "#/components/schemas/Vitamin"
                 type: array
     post:
-      operationId: postViatmin
+      operationId: postVitamin
       tags: ["Vitamin"]
       description: Create a new vitamin/mineral
       requestBody:

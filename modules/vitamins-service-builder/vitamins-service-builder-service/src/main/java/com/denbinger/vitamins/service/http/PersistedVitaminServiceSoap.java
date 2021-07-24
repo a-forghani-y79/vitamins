@@ -81,6 +81,25 @@ public class PersistedVitaminServiceSoap {
 	}
 
 	public static com.denbinger.vitamins.model.PersistedVitaminSoap
+			getPersistedVitamin(long persistedVitaminId)
+		throws RemoteException {
+
+		try {
+			com.denbinger.vitamins.model.PersistedVitamin returnValue =
+				PersistedVitaminServiceUtil.getPersistedVitamin(
+					persistedVitaminId);
+
+			return com.denbinger.vitamins.model.PersistedVitaminSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	public static com.denbinger.vitamins.model.PersistedVitaminSoap
 			addPersistedVitamin(
 				String id, String name, String groupName, String description,
 				int typeCode, String articleId, String[] chemicalNames,

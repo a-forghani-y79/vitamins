@@ -67,6 +67,14 @@ public class PersistedVitaminServiceWrapper
 
 	@Override
 	public com.denbinger.vitamins.model.PersistedVitamin getPersistedVitamin(
+			long persistedVitaminId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _persistedVitaminService.getPersistedVitamin(persistedVitaminId);
+	}
+
+	@Override
+	public com.denbinger.vitamins.model.PersistedVitamin getPersistedVitamin(
 			String surrogateId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 

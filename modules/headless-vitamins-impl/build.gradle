@@ -1,7 +1,10 @@
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "release.portal.api"
 	compileOnly project(":modules:headless-vitamins-api")
+	compileOnly project(":modules:vitamins-service-builder:vitamins-service-builder-api")
+	compileOnly group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 //	compileOnly group: 'javax', name: 'javaee-api', version: '6.0'
+
 //
 //	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.9.9"
 //	compileOnly group: "com.liferay", name: "com.liferay.adaptive.media.api"

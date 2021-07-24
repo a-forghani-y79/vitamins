@@ -38,11 +38,14 @@ public interface VitaminResource {
 		return FactoryHolder.factory.create();
 	}
 
-	public Page<Vitamin> getViatminsPage(
+	public Page<Vitamin> getVitaminsPage(
 			String search, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception;
 
-	public Vitamin postViatmin(Vitamin vitamin) throws Exception;
+	public Vitamin postVitamin(Vitamin vitamin) throws Exception;
+
+	public Response postVitaminBatch(String callbackURL, Object object)
+		throws Exception;
 
 	public void deleteVitamin(String vitaminId) throws Exception;
 
