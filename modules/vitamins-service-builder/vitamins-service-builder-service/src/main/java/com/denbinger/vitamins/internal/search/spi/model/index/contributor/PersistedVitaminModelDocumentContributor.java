@@ -10,7 +10,6 @@ import com.liferay.portal.search.spi.model.index.contributor.ModelDocumentContri
 import org.osgi.service.component.annotations.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component(immediate = true, property = "indexer.class.name=com.denbinger.vitamins.model.PersistedVitamin", service = ModelDocumentContributor.class)
 public class PersistedVitaminModelDocumentContributor implements ModelDocumentContributor<PersistedVitamin> {

@@ -15,7 +15,6 @@
 package com.denbinger.vitamins.service.persistence.impl.constants;
 
 import com.liferay.petra.string.StringBundler;
-
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 import org.osgi.framework.FrameworkUtil;

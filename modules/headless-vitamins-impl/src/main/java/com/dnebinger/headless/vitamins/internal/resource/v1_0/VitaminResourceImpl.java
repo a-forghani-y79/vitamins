@@ -8,38 +8,27 @@ import com.dnebinger.headless.vitamins.dto.v1_0.Vitamin;
 import com.dnebinger.headless.vitamins.internal.odata.entity.v1_0.VitaminEntityModel;
 import com.dnebinger.headless.vitamins.internal.util.CreatorUtil;
 import com.dnebinger.headless.vitamins.resource.v1_0.VitaminResource;
-
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
-import com.liferay.portal.kernel.dao.search.SearchPaginationUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.SearchResultUtil;
 import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.search.filter.ExistsFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Accessor;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-import com.liferay.portal.vulcan.util.SearchUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
-
-
-import javax.validation.constraints.NotNull;
-import javax.ws.rs.core.MultivaluedMap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.core.MultivaluedMap;
 import java.util.List;
 import java.util.stream.Collectors;
 

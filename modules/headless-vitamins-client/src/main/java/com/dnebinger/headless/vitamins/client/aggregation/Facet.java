@@ -1,9 +1,8 @@
 package com.dnebinger.headless.vitamins.client.aggregation;
 
+import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Generated;
 
 /**
  * @author Dave Nebinger

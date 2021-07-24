@@ -3,11 +3,9 @@ package com.dnebinger.headless.vitamins.client.dto.v1_0;
 import com.dnebinger.headless.vitamins.client.function.UnsafeSupplier;
 import com.dnebinger.headless.vitamins.client.serdes.v1_0.CreatorSerDes;
 
-import java.io.Serializable;
-
-import java.util.Objects;
-
 import javax.annotation.Generated;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @author Dave Nebinger

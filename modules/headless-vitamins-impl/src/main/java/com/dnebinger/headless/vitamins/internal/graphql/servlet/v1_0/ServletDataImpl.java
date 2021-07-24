@@ -3,17 +3,15 @@ package com.dnebinger.headless.vitamins.internal.graphql.servlet.v1_0;
 import com.dnebinger.headless.vitamins.internal.graphql.mutation.v1_0.Mutation;
 import com.dnebinger.headless.vitamins.internal.graphql.query.v1_0.Query;
 import com.dnebinger.headless.vitamins.resource.v1_0.VitaminResource;
-
 import com.liferay.portal.vulcan.graphql.servlet.ServletData;
-
-import javax.annotation.Generated;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.ComponentServiceObjects;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceScope;
+
+import javax.annotation.Generated;
 
 /**
  * @author Dave Nebinger
