@@ -18,6 +18,7 @@ import com.denbinger.vitamins.model.PersistedVitamin;
 import com.denbinger.vitamins.service.base.PersistedVitaminServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionHelper;
@@ -26,6 +27,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
+
+import java.util.List;
 
 /**
  * The implementation of the persisted vitamin remote service.
@@ -113,5 +116,9 @@ public class PersistedVitaminServiceImpl
         persistedVitaminModelResourcePermission.check(getPermissionChecker(),
                 persistedVitaminLocalService.getPersistedVitamin(surrogateId), ActionKeys.DELETE);
         persistedVitaminLocalService.deleteVitamin(surrogateId);
+    }
+
+    public List<PersistedVitamin> getAll(){
+        return persistedVitaminPersistence.findAll();
     }
 }

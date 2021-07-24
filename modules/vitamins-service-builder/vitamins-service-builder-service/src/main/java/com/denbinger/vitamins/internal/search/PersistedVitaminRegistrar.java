@@ -11,6 +11,8 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component(immediate = true, service = PersistedVitaminRegistrar.class )
 public class PersistedVitaminRegistrar {
@@ -47,7 +49,9 @@ public class PersistedVitaminRegistrar {
                     modelSearchDefinition.setModelSummaryContributor(modelSummaryContributor);
                 }
         );
+        logger.error("persisted vitamin registrar for search");
     }
+    Logger logger = LoggerFactory.getLogger(PersistedVitaminRegistrar.class);
 
     @Deactivate
     public void deactivate(){
