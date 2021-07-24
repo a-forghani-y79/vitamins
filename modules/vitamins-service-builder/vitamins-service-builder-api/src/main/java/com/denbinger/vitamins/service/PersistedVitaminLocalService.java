@@ -81,6 +81,7 @@ public interface PersistedVitaminLocalService
 	public PersistedVitamin addPersistedVitamin(
 		PersistedVitamin persistedVitamin);
 
+	@Indexable(type = IndexableType.REINDEX)
 	@SystemEvent(type = SystemEventConstants.TYPE_DEFAULT)
 	public PersistedVitamin addPersistedVitamin(
 			String id, String name, String groupName, String description,
@@ -131,11 +132,14 @@ public interface PersistedVitaminLocalService
 	 * @return the persisted vitamin that was removed
 	 */
 	@Indexable(type = IndexableType.DELETE)
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public PersistedVitamin deletePersistedVitamin(
 		PersistedVitamin persistedVitamin);
 
+	@Indexable(type = IndexableType.DELETE)
 	public PersistedVitamin deleteVitamin(long persistedVitaminId);
 
+	@Indexable(type = IndexableType.DELETE)
 	public void deleteVitamin(String surrogateId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -318,6 +322,8 @@ public interface PersistedVitaminLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPersistedVitaminsCount();
 
+	@Indexable(type = IndexableType.REINDEX)
+	@SystemEvent(type = SystemEventConstants.TYPE_DEFAULT)
 	public PersistedVitamin patchPersistedVitamin(
 			String oldId, String id, String name, String groupName,
 			String description, int typeCode, String articleId,
@@ -339,6 +345,8 @@ public interface PersistedVitaminLocalService
 	public PersistedVitamin updatePersistedVitamin(
 		PersistedVitamin persistedVitamin);
 
+	@Indexable(type = IndexableType.REINDEX)
+	@SystemEvent(type = SystemEventConstants.TYPE_DEFAULT)
 	public PersistedVitamin updatePersistedVitamin(
 			String oldId, String id, String name, String groupName,
 			String description, int typeCode, String articleId,

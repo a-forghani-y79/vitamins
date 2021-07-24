@@ -240,6 +240,12 @@ public class VitaminDetailLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static java.util.List<com.denbinger.vitamins.model.VitaminDetail>
+		getAllVitaminDetails(long persistedVitaminId) {
+
+		return getService().getAllVitaminDetails(persistedVitaminId);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery
 		getExportActionableDynamicQuery(
 			com.liferay.exportimport.kernel.lar.PortletDataContext
@@ -318,6 +324,13 @@ public class VitaminDetailLocalServiceUtil {
 		getVitaminDetails(int start, int end) {
 
 		return getService().getVitaminDetails(start, end);
+	}
+
+	public static java.util.List<com.denbinger.vitamins.model.VitaminDetail>
+		getVitaminDetailsByType(long persistedVitaminId, int typeCode) {
+
+		return getService().getVitaminDetailsByType(
+			persistedVitaminId, typeCode);
 	}
 
 	/**

@@ -215,6 +215,9 @@ public interface VitaminDetailLocalService
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<VitaminDetail> getAllVitaminDetails(long persistedVitaminId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		PortletDataContext portletDataContext);
 
@@ -273,6 +276,10 @@ public interface VitaminDetailLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<VitaminDetail> getVitaminDetails(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<VitaminDetail> getVitaminDetailsByType(
+		long persistedVitaminId, int typeCode);
 
 	/**
 	 * Returns all the vitamin details matching the UUID and company.

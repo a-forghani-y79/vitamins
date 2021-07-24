@@ -254,6 +254,14 @@ public class VitaminDetailLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.denbinger.vitamins.model.VitaminDetail>
+		getAllVitaminDetails(long persistedVitaminId) {
+
+		return _vitaminDetailLocalService.getAllVitaminDetails(
+			persistedVitaminId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery
 		getExportActionableDynamicQuery(
 			com.liferay.exportimport.kernel.lar.PortletDataContext
@@ -339,6 +347,14 @@ public class VitaminDetailLocalServiceWrapper
 		getVitaminDetails(int start, int end) {
 
 		return _vitaminDetailLocalService.getVitaminDetails(start, end);
+	}
+
+	@Override
+	public java.util.List<com.denbinger.vitamins.model.VitaminDetail>
+		getVitaminDetailsByType(long persistedVitaminId, int typeCode) {
+
+		return _vitaminDetailLocalService.getVitaminDetailsByType(
+			persistedVitaminId, typeCode);
 	}
 
 	/**

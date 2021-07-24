@@ -21,11 +21,15 @@ import com.denbinger.vitamins.service.PersistedVitaminLocalService;
 import com.denbinger.vitamins.service.VitaminDetailLocalService;
 import com.denbinger.vitamins.service.base.PersistedVitaminLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.dao.db.Index;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.portal.security.service.access.policy.constants.SAPEntryConstants;
 import org.apache.commons.lang.RandomStringUtils;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -75,6 +79,7 @@ public class PersistedVitaminLocalServiceImpl
 
 
     @SystemEvent(type = SystemEventConstants.TYPE_DEFAULT)
+    @Indexable(type = IndexableType.REINDEX)
     public PersistedVitamin addPersistedVitamin(String id, String name, String groupName, String description, int typeCode,
                                                 String articleId, String[] chemicalNames, String[] properties, String[] attributes,
                                                 String[] symptoms, String[] risks, ServiceContext serviceContext) throws PortalException {
@@ -117,9 +122,16 @@ public class PersistedVitaminLocalServiceImpl
         addDetail(vitamin.getPersistedVitaminId(), symptoms, VitaminDetailType.SYMPTOM, serviceContext);
         addDetail(vitamin.getPersistedVitaminId(), risks, VitaminDetailType.RISK, serviceContext);
 
+        resourceLocalService.addResources(vitamin.getCompanyId(), vitamin.getGroupId(),
+                vitamin.getUserId(), PersistedVitamin.class.getName(),
+                vitamin.getPersistedVitaminId(), false,
+                serviceContext.isAddGroupPermissions(), serviceContext.isAddGuestPermissions());
+
         return vitamin;
     }
 
+    @Indexable(type = IndexableType.REINDEX)
+    @SystemEvent(type = SystemEventConstants.TYPE_DEFAULT)
     public PersistedVitamin updatePersistedVitamin(String oldId, String id, String name, String groupName, String description,
                                                    int typeCode, String articleId, String[] chemicalNames, String[] properties,
                                                    String[] attributes, String[] symptoms, String[] risks, ServiceContext serviceContext) throws PortalException {
@@ -173,6 +185,9 @@ public class PersistedVitaminLocalServiceImpl
         return vitamin;
     }
 
+
+    @Indexable(type = IndexableType.REINDEX)
+    @SystemEvent(type = SystemEventConstants.TYPE_DEFAULT)
     public PersistedVitamin patchPersistedVitamin(String oldId, String id, String name, String groupName, String description,
                                                   int typeCode, String articleId, String[] chemicalNames, String[] properties,
                                                   String[] attributes, String[] symptoms, String[] risks, ServiceContext serviceContext) throws PortalException {
@@ -258,7 +273,7 @@ public class PersistedVitaminLocalServiceImpl
         return vitamin;
     }
 
-
+    @Indexable(type = IndexableType.DELETE)
     public void deleteVitamin(String surrogateId) throws PortalException {
         PersistedVitamin vitamin = getPersistedVitamin(surrogateId);
         if (vitamin != null) {
@@ -266,6 +281,7 @@ public class PersistedVitaminLocalServiceImpl
         }
     }
 
+    @Indexable(type = IndexableType.DELETE)
     public PersistedVitamin deleteVitamin(long persistedVitaminId) {
         PersistedVitamin vitamin = fetchPersistedVitamin(persistedVitaminId);
         if (vitamin != null)
@@ -273,6 +289,8 @@ public class PersistedVitaminLocalServiceImpl
         return vitamin;
     }
 
+    @Indexable(type = IndexableType.DELETE)
+    @SystemEvent(type = SystemEventConstants.TYPE_DELETE)
     @Override
     public PersistedVitamin deletePersistedVitamin(PersistedVitamin persistedVitamin) {
         vitaminDetailLocalService.deleteAllVitaminDetails(persistedVitamin.getPersistedVitaminId());

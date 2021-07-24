@@ -19,6 +19,7 @@ import com.denbinger.vitamins.service.VitaminDetailLocalService;
 import com.denbinger.vitamins.service.base.VitaminDetailLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
@@ -103,20 +104,29 @@ public class VitaminDetailLocalServiceImpl
 	public VitaminDetail deleteVitaminDetail(long vitaminDetailId) throws PortalException {
 		VitaminDetail vitaminDetail = fetchVitaminDetail(vitaminDetailId);
 		if (vitaminDetail!=null){}
-//			resourceLocalService.deleteResource(vitaminDetail.getCompanyId(), VitaminDetail.class.getName(),
-//					ResourceConstants.SCOPE_INDIVIDUAL,vitaminDetail.getVitaminDetailId());
+			resourceLocalService.deleteResource(vitaminDetail.getCompanyId(), VitaminDetail.class.getName(),
+					ResourceConstants.SCOPE_INDIVIDUAL,vitaminDetail.getVitaminDetailId());
 		return super.deleteVitaminDetail(vitaminDetailId);
 	}
 
 	@Override
 	public VitaminDetail deleteVitaminDetail(VitaminDetail vitaminDetail) {
-//		try {
-//			resourceLocalService.deleteResource(
-//					vitaminDetail.getCompanyId(), VitaminDetail.class.getName(),
-//					ResourceConstants.SCOPE_INDIVIDUAL, vitaminDetail.getVitaminDetailId());
-//		} catch (PortalException e) {
-//			LOGGER.warn("Error deleting vitamin detail permissions: " + e.getMessage(), e);
-//		}
+		try {
+			resourceLocalService.deleteResource(
+					vitaminDetail.getCompanyId(), VitaminDetail.class.getName(),
+					ResourceConstants.SCOPE_INDIVIDUAL, vitaminDetail.getVitaminDetailId());
+		} catch (PortalException e) {
+			LOGGER.warn("Error deleting vitamin detail permissions: " + e.getMessage(), e);
+		}
 		return super.deleteVitaminDetail(vitaminDetail);
+	}
+
+
+	public List<VitaminDetail> getAllVitaminDetails(long persistedVitaminId){
+		return vitaminDetailPersistence.findByPersistedVitaminId(persistedVitaminId);
+	}
+
+	public List<VitaminDetail> getVitaminDetailsByType(long persistedVitaminId, int typeCode){
+		return vitaminDetailPersistence.findByPersistedVitaminIdType(persistedVitaminId, typeCode);
 	}
 }
